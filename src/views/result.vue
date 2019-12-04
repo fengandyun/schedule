@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="content-body left">
-      <p>{{year}}年{{month}}月</p>
+      <p class="basic-day">{{year}}年{{month}}月</p>
       <div
         class="basic-info"
       >{{$route.query.group}}-{{$route.query.type}}-{{$route.query.dutyAccount}}-值班信息</div>
@@ -31,9 +31,9 @@
           </el-col>
         </el-row>
       </div>
-      <div class="week-day center " v-if="!noSchedule">
-        <el-row :gutter="0" v-for="(item,index) in personDayList" :key='index' class="pd5">
-          <el-col v-for="(info,infoIndex) in item" :key='infoIndex' class="width7">
+      <div class="week-day center" v-if="!noSchedule">
+        <el-row :gutter="0" v-for="(item,index) in personDayList" :key="index" class="pd5">
+          <el-col v-for="(info,infoIndex) in item" :key="infoIndex" class="width7">
             <div>{{info.day}}</div>
             <div>{{info.dutyPerson}}</div>
           </el-col>
@@ -56,7 +56,7 @@ export default {
     return {
       year: "",
       month: "",
-      personDayList:[], // 二维数组，渲染最后的list
+      personDayList: [], // 二维数组，渲染最后的list
       noSchedule: false
     };
   },
@@ -68,34 +68,34 @@ export default {
     // this.nullDayList = this.getYMWeekDays(this.year,this.month);
   },
   methods: {
-    getResult(){
-      let that =  this;
-      http(url.search,this.$route.query).then(data => {
+    getResult() {
+      let that = this;
+      http(url.search, this.$route.query).then(data => {
         // console.log(data);
-        // 转换数据结构，初始化所有的值班人和值班号选择列表 
+        // 转换数据结构，初始化所有的值班人和值班号选择列表
         // this.selectPersons  this.accountOptions
         // debugger
         // let allDayList = Object.assign({},data,that.nullDayList);
         // 处理下，每7个组成一周
         // data= [];
-        if(data.length < 1){
+        if (data.length < 1) {
           that.noSchedule = true;
           return;
         }
         let arr = [];
-        for(let i = 0; i < data.length; i ++ ){
+        for (let i = 0; i < data.length; i++) {
           arr.push(data[i]);
-          if(i != 0 && (i+1) % 7 == 0){
+          if (i != 0 && (i + 1) % 7 == 0) {
             that.personDayList.push(arr);
             arr = [];
           }
           // 最后做一次 兜底的判断  如果数据有问题，就把剩余的数据进行一次加入
-          if(arr.length > 0 && i == data.length - 1){
+          if (arr.length > 0 && i == data.length - 1) {
             that.personDayList.push(arr);
           }
         }
       });
-    },
+    }
   }
 };
 </script>
@@ -110,10 +110,18 @@ export default {
   display: block;
   padding: 10px 0px;
 }
+.basic-day {
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: darkred;
+}
 .basic-info {
   font-size: 18px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  color: dodgerblue;
 }
 .width7 {
   width: 14.25% !important;
@@ -125,13 +133,13 @@ export default {
 .week-title {
   font-weight: 500;
   padding: 15px 0px;
-  background-color: #eee;
+  background-color: lightsalmon;
   border-bottom: 1px solid #ccc;
 }
 .week-day {
   font-size: 14px;
 }
-.no-schedule p{
+.no-schedule p {
   font-size: 16px;
   font-weight: 500;
 }

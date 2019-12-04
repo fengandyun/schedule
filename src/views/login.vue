@@ -38,7 +38,9 @@ export default {
       }
     };
   },
-  mounted() {},
+  mounted() {
+    // window.$sensors.track('gz',{});
+  },
   methods: {
     validatePass(rule, value, callback) {
       if (value === "芝麻开门") {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Message } from 'element-ui';
 require('promise.prototype.finally').shim()
 
-axios.defaults.timeout = 3000;
+axios.defaults.timeout = 6000;
 // axios.defaults.baseURL = 'https://www.sensorsdata.cn/api/support/';
 // Vue.prototype.$axios = axios
 axios.defaults.baseURL = '/api/support'
