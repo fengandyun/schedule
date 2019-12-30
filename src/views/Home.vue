@@ -145,7 +145,7 @@ export default {
       previousMonth = 12;
     }
     if (currentMonth == 12) {
-      nextYear = currentYear - 1;
+      nextYear = currentYear + 1;
       nextMonth = 1;
     }
     this.selectMonths = [
