@@ -165,6 +165,10 @@ export default {
     submitScheduling() {
       // console.log('111');
       // sensors.track('gz',{});
+      alert('假装已提交');
+      return false;
+      // sensors.track('gz',{}
+      // sensors.track('gz',{});
       // 提交排班信息
       // 整理提交数据的param
       let param = {
